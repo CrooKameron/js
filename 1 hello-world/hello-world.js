@@ -1,1 +1,0 @@
-console.log("hello world"); //types something in the console
