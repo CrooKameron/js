@@ -27,4 +27,4 @@ output = currenttime.getFullYear() - birthdate.getFullYear();
 
 
 console.log(output);
-console.log(typeof(output));
+console.log(typeof(output));      
