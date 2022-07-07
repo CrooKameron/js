@@ -62,7 +62,7 @@ let products = [
 ]
 output = products[0];                
 output = products[0].product_name;
-///////////
+////////////
 
 
 
