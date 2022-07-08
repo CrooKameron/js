@@ -3,7 +3,6 @@ let order1 = {
     "id":101,
     "date":"30.12.2022",
     "payout":"credit card",
-    
     "items":[
       {
         "item_id":"723",
@@ -76,11 +75,6 @@ let order2 = {
         "item_price":1725
       }
     ]
-    "items":[
-      "xiaomi note9s+",
-      "smart watch",
-      "oculus vr headset"
-    ]
   },
   
   "shipping":{
@@ -111,12 +105,42 @@ let orders = [
   order2
 ];
 
-// selecting items from objects                                       
-orders[0].order_info.price += orders[0].order_info.price * 0.18;    
-orders[1].order_info.price += orders[1].order_info.price * 0.18;    
+let money_unit = "$";
 
-let output = orders[0].order_info.items;
-// 
 
-console.log(output);
-console.log(typeof(output));
+console.log("order id:"+ orders[0].order_info.id);
+console.log("order date:"+ orders[0].order_info.date);
+console.log("payment type:"+ orders[0].order_info.payout);
+console.log("total items ordered: "+ orders[0].order_info.items.length);
+
+
+
+//// shopping card overwiew 
+console.log("")
+console.log("")
+console.log("shopping cart: ")
+console.log("")
+for (let i = 0; i < orders[0].order_info.items.length; i++) {
+  console.log("* item "+(i+1));
+  console.log("product name: "+orders[0].order_info.items[i].item_name );
+  console.log("product price: "+orders[0].order_info.items[i].item_price );
+  console.log("product link: "+orders[0].order_info.items[i].item_link );
+  console.log("product id: "+orders[0].order_info.items[i].item_id );
+  console.log("");
+}
+console.log("")
+//
+
+
+
+
+// total price
+
+let totalprice = 0;
+for (let j = 0; j < orders[0].order_info.items.length; j++) {
+  totalprice += orders[0].order_info.items[j].item_price
+}
+totalprice += (totalprice * 18 / 100) // taxes :D (18%)
+totalprice = number.toFixed(2)
+console.log("total price: "+totalprice+money_unit)
+//

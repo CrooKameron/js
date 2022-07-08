@@ -1,4 +1,4 @@
-let output;
+     let output;
 
 
 output = "10";
