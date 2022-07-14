@@ -33,7 +33,9 @@ let order1 = {
   },
 
   "customer_info":{
-    "id":12
+    "id":12,
+    "namesurname":"joe mama",
+    "mail":"themagickitten@gmail.com"
   },
 
   "seller_info":{
@@ -84,7 +86,9 @@ let order2 = {
   },
 
   "customer_info":{
-    "id":13
+    "id":825,
+    "namesurname":"mkatat",
+    "mail":"examplemail@tutamail.com"
   },
 
   "seller_info":{
@@ -118,7 +122,7 @@ console.log("total items ordered: "+ orders[0].order_info.items.length);
 //// shopping card overwiew 
 console.log("")
 console.log("")
-console.log("shopping cart: ")
+console.log("Shopping Cart")
 console.log("")
 for (let i = 0; i < orders[0].order_info.items.length; i++) {
   console.log("* item "+(i+1));
@@ -128,19 +132,57 @@ for (let i = 0; i < orders[0].order_info.items.length; i++) {
   console.log("product id: "+orders[0].order_info.items[i].item_id );
   console.log("");
 }
-console.log("")
+console.log("");
 //
 
 
 
 
 // total price
-
 let totalprice = 0;
 for (let j = 0; j < orders[0].order_info.items.length; j++) {
   totalprice += orders[0].order_info.items[j].item_price
 }
 totalprice += (totalprice * 18 / 100) // taxes :D (18%)
-totalprice = number.toFixed(2)
-console.log("total price: "+totalprice+money_unit)
+totalprice = totalprice.toFixed(2); // making the money 2 digits after the dot
+console.log("Total Price: "+totalprice+money_unit) 
+//
+
+console.log("");
+console.log("");
+console.log("");
+
+// shipping information
+console.log("Shipping Information");
+console.log("town: "+ orders[0].shipping.town);
+console.log("city: "+ orders[0].shipping.city);
+console.log("region: "+ orders[0].shipping.region);
+//
+
+console.log("");
+console.log("");
+
+
+// customer information
+console.log("Customer Information");
+console.log("name & surname: "+ orders[0].customer_info.namesurname);
+console.log("mail adress: "+ orders[0].customer_info.mail);
+console.log("Id: "+ orders[0].customer_info.id);
+//
+
+
+console.log("");
+console.log("");
+
+
+// seller information
+console.log("Seller Information");
+console.log("seller: "+ orders[0].seller_info.id);
+console.log("seller: "+ orders[0].seller_info.seller_name);
+console.log("");
+console.log("Seller Adress");
+console.log("country: "+ orders[0].seller_info.seller_adress.country);
+console.log("city: "+ orders[0].seller_info.seller_adress.city);
+console.log("district: "+ orders[0].seller_info.seller_adress.district);
+console.log("street: "+ orders[0].seller_info.seller_adress.street);
 //
