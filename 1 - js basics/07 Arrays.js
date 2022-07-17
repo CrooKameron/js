@@ -35,7 +35,7 @@ for (let a = 0; a < products.length; a++) {
 }
 ///////////// OR
 
-console.log(products)
+return products
 ////////////////////////////////////////////
 
 

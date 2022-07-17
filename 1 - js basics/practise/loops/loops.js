@@ -66,6 +66,22 @@ let students = [
 ];
 
 
+/*
+//average score of all students (holy shit i felt so good when i solved the problem)
+let avgscore1 = 0;
+let counter = 0;
+for (let t = 0; t < students.length; t++) {
+  for (let u = 0; u < students[t].scores.length; u++) {
+    avgscore1 += students[t].scores[u];
+    counter++;
+  }
+}
+avgscore1 = avgscore1 / counter;
+console.log("al student's average score: "+avgscore1);
+*/
+
+
+
 // just a stupid student & score alg
 for (let r = 0; r < students.length; r++) {
   console.log("name & surname: "+students[r].name+" "+students[r].surname);
@@ -86,3 +102,4 @@ for (let r = 0; r < students.length; r++) {
   
   console.log("");
 }
+
