@@ -19,4 +19,4 @@ console.log(gender); // like you can see if you try to use let variables that de
 //you cant create a new scope in a block (let,const)
 //functions creates their own scope zones
 
-func1();
+func1(); 
