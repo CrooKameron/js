@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="card-header">
+        <h3 id="title" class="card-title h1">Lorem ipsum</h3>
+    </div>
+    <ul id="task-list">
+        <li>object 1</li>
+        <li>object 2</li>
+        <li>object 3</li>
+    </ul>
+    <script>
+        let output;
+
+        output = document.getElementById("title");
+        output = document.getElementById("title").id;
+        output = document.getElementById("title").className;
+
+        document.getElementById("title").style.fontSize = "60px";
+        document.getElementById("title").style.color = "red";
+        document.getElementById("title").style.textAlign = "center";
+
+
+        document.getElementById("title").innerText = "<p> dolor sit </p>"; //prints: "<p> dolor sit <p>" innerheml does not interpet the html tags
+        document.getElementById("title").innerHTML = "<p> Todo list </p>"; //prints: "dolor sit"         innerheml interpets the html tags
+
+
+        output = document.querySelector("#title");
+        output = document.querySelector(".card-header");
+        output = document.querySelector("div");
+        
+        
+        
+        output = document.querySelector("li:first-child");
+        output = document.querySelector("li:last-child");
+        output = document.querySelector("li:nth-child(2)");
+        output = document.querySelector("li:nth-child(2)");
+
+
+
+
+        console.log(output);
+    </script>
+</body>
+</html>

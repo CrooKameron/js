@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="card-header">
+        <h3 id="title" class="card-title h1">Todo list</h3>
+    </div>
+    <ul id="task-list">
+        <li class="task">object 1</li>
+        <li class="task">object 2</li>
+        <li class="task">object 3</li>
+    </ul>
+    <ul id="task-list2">
+        <li class="task">object 1</li>
+        <li class="task">object 2</li>
+        <li class="task">object 3</li>
+    </ul>
+    <script>
+        let output;
+
+        tasklist = document.getElementsByClassName("task");   // getting elements classes named task
+ 
+        output = document.getElementsByClassName("task")[0]; // selecting specified class item
+        output = document.getElementsByClassName("task")[1]; //
+        
+        
+        
+        tasklist = document.getElementsByTagName("li");  // getting element by tag name
+        tasklist = document.getElementsByClassName("task");   // getting elemnt by class name
+        
+        
+        
+        
+        // ul = document.getElementById("task-list");               // use this
+        // tasklist = ul.getElementsByTagName("li");                //
+                                                                        // both does the same work
+        tasklist = document.querySelectorAll("li");                 // 
+        tasklist = document.querySelectorAll("#task-list li");      // or this
+
+
+
+        for(let task of tasklist) {
+            task.style.color="red";     // changing the color
+            task.style.fontSize="20px"; // changinf font size
+            task.innerText="Item";      // changing the content of the li
+        }
+
+
+
+        // console.log(output);
+    </script>
+</body>
+</html>
