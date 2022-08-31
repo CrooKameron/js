@@ -23,7 +23,7 @@
 
         .task label.checked {
             text-decoration: line-through;
-        }
+        } 
         .controls {
             display: flex;
             align-items: center;
@@ -200,8 +200,6 @@
 
             deletedId = taskList.findIndex(task => task.id == id)
 
-
-
             taskList.splice(deletedId, 1);
             displayTasks(document.querySelector("span.active").id);
         }
@@ -238,7 +236,6 @@
                 if (task.id == selectedTask.id) {
                     task.status = status;
                 }
-
             }
         }
 
