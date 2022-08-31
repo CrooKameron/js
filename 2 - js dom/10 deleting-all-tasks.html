@@ -7,11 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <!-- CSS only -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .dropdown-toggle::after {display: none;}
-        .task{display: flex; align-items: center; justify-content: space-between;}
+        .dropdown-toggle::after {
+            display: none;
+        }
+
+        .task {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
     </style>
 </head>
 
@@ -56,30 +64,35 @@
     <script>
 
 
-        let tasklist = [
+        let taskList = [
             { "id": 1, "taskName": "Task 1" },
             { "id": 2, "taskName": "Task 2" },
             { "id": 3, "taskName": "Task 3" },
-            { "id": 4, "taskName": "Task 4" }
-        ]
+            { "id": 4, "taskName": "Task 4" },
+        ];
 
         let editId;
         let isEditTask = false;
 
-        let taskinput = document.querySelector("#txtTaskName"); 
+        const taskinput = document.querySelector("#txtTaskName");
+        const btnClear = document.querySelector("#btnClear")
 
-        
+
         displayTasks();
-        
-        
+
+
         function displayTasks() {
             ul = document.getElementById("task-list");
             ul.innerHTML = "";
 
-            for (let task of tasklist) {
+            if (taskList.length == 0) {
+                ul.innerHTML = "<p class='p-3 m-0'>List is empty!</p>"
+            } else {
+
+                for (let task of taskList) {
 
 
-                let li = `
+                    let li = `
                 <li class="task list-group-item">
                     <div class="form-check">
                         <input type="checkbox" class="form-check-input" id="${task.id}" />
@@ -96,14 +109,15 @@
                     </div>
                 </li>
             `;
-                ul.insertAdjacentHTML("beforeend", li);
+                    ul.insertAdjacentHTML("beforeend", li);
+                }
             }
 
 
         }
 
 
-    
+
 
 
         document.querySelector("#btnClear").addEventListener("click", deleteTask);
@@ -118,17 +132,17 @@
         });
 
         function newTask(event) {
-            
+
 
             if (taskinput.value == "") {
                 alert("you need to type a task first");
             } else {
                 if (!isEditTask) {
                     // add
-                    tasklist.push({ "id": tasklist.length + 1, "taskName": taskinput.value });
+                    taskList.push({ "id": taskList.length + 1, "taskName": taskinput.value });
                 } else {
                     // update
-                    for(let task of tasklist) {
+                    for (let task of taskList) {
                         if (task.id == editId) {
                             task.taskName = taskinput.value;
                         }
@@ -147,17 +161,15 @@
         function deleteTask(id) {
             let deletedId;
 
-            deletedId = tasklist.findIndex(task => task.id == id)
-                
+            deletedId = taskList.findIndex(task => task.id == id)
 
-                
-            tasklist.splice(deletedId, 1);
+
+
+            taskList.splice(deletedId, 1);
             displayTasks();
         }
 
-
-
-        function editTask(taskId, taskName){
+        function editTask(taskId, taskName) {
             editId = taskId;
             isEditTask = true;
             taskinput.value = taskName;
@@ -165,9 +177,14 @@
             taskinput.classList.add("actice");
 
 
-            console.log("edit id:",editId);
-            console.log("edit mode:",isEditTask);
+            console.log("edit id:", editId);
+            console.log("edit mode:", isEditTask);
         }
+
+        btnClear.addEventListener("click", function () {
+            taskList.splice(0, taskList.length);
+            displayTasks();
+        })
 
 
     </script>
