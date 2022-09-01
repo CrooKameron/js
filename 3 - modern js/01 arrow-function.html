@@ -41,9 +41,34 @@
 
 
 
+        // ES5 addition
 
+        var additionES5 = function(a,b){
+            return a + b;
+        }
 
-         
+        var output1 = additionES5(10,20);
+        console.log(output1);
+
+        // ES6 addition
+
+        // you can use const or let with es6
+        const additionES6const = (a,b) => a+b;
+        let additionES6let = (a,b) => a+b;
+        
+        // if you are going to use multiple lines with this function you will need to use "{}" and "return"
+        let additionES6letmultiple = (a,b) => {
+            c = a+b;
+            c* a+b;
+        }
+
+        let output2 = additionES6let(20,40);
+        console.log(output2);
+        
+        
+        let output3 = additionES6letmultiple(60,120);
+        console.log(output3);
+        
     </script>
     
 </body>

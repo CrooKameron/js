@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        const numbers = [1,2,3,4,5,6,7,85];
+
+
+        // ES5
+        // const oddnumbers = []
+        // for(let number of numbers){
+        //     if (number%2==1) {
+        //         oddnumbers.push(number);
+        //     }
+        // };
+        // console.log(oddnumbers);
+
+
+        // ES6
+
+        const oddnumbercontrol = (number) => number % 2 == 1;
+
+
+
+        //                            v if the condidions are met it returns the value's itself if its not it doesnt return any value
+        // const oddnumbers = numbers.filter(oddnumbercontrol);
+
+        //                         v if the conditions are met it returns true value if its not it returns false value
+        const oddnumbers = numbers.map(oddnumbercontrol);
+        
+        
+        console.log(oddnumbers);
+
+
+
+
+
+
+
+        const products = [
+            {productname: "iphone11", price: 900},
+            {productname: "iphone12", price: 1000},
+            {productname: "iphone13", price: 1200},
+            {productname: "iphone14", price: 2600}
+        ]
+
+
+        // const output4 = products.map(product => product); // returning whole array list 
+        // const output4 = products.map(product => product.productname); // returning just the "productname"'s 
+
+        // const output4 = products.filter(product => product.price > 1100) // filters the price and returns array items
+        // const output4= products.filter(product => product.price > 1100).map(product => product.name); // filters the price and returns specifield array items
+        const output4 = products.findIndex(product => product.price > 1050); // returns the FIRST AND ONLY item's index number in the array with specified values
+        
+
+        
+        console.log(output4);
+
+
+
+
+
+
+
+        
+    </script>
+    
+</body>
+</html>
