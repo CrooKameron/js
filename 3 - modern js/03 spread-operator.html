@@ -9,22 +9,91 @@
 <body>
 
     <script>
-        const msg = ["hi","i'm","saul","goodman","did","you","know","that","you","have","rights"];
+        // const msg = ["hi","i'm","saul","goodman","did","you","know","that","you","have","rights"];
 
-        // ES5
-        let output = "";
+        // // ES5
+        // let output = "";
         
-        for (let x of msg) {
-            output += x + " ";
+        // for (let x of msg) {
+        //     output += x + " ";
+        // }
+
+        // console.log(output);
+
+
+
+        // // ES6
+        // console.log(...msg);
+
+
+
+
+
+
+
+
+
+
+       
+        // references
+
+        const numbers1 = [1,2,3];
+        // const numbers2 = numbe1; <77 reference copy
+        const numbers2 = [...numbers1];
+
+        numbers2[0] = 10;
+
+        console.log(numbers1,numbers2);
+
+
+
+
+        // example
+        const user = {
+            username: "crookameron",
+            email: "crookameron@gmail.com" 
+        }
+        const adress = {
+            city: "izmir"
         }
 
-        console.log(output);
+        console.log({...user,...adress});
 
 
 
-        // ES6
-        console.log(...msg);
 
+
+
+
+
+        // rest parameters
+        function addition(...args) {
+            let output1 = 0;
+            for (let number of args) {
+                output1 += number; 
+            }
+            return output1;
+        }
+
+        addition(1,2,5,4);
+        addition(1,2,5,7,69);
+
+
+
+
+
+
+
+
+
+
+
+
+        // real use of the spread operator
+        function showinformation(name, surname, ...adress){
+            console.log(name,surname,adress);
+        }
+        showinformation("ali","turan","istanbul","kadıköy");
     </script>
     
 </body>
