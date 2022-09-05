@@ -11,26 +11,66 @@
     <script>
 
         // array destructuring
-        let user = ["sadık","turam","istanbul","kadıköy"];
+        let user = ["sadık","turam","istanbul","kadıköy","41000"];
 
         // let firstname = name[0];
         // let lastname = name[1];
 
         // let [firstname, lastname] = "name surname".split(" ");
+        // let [firstname, lastname, city, town] = user;
+        // let [firstname, lastname, , town] = user; // if you want to ignore a item in the array leave it blank
         let [firstname, lastname, ...adress] = user;
-
+        
         console.log(firstname, lastname, adress);
-
-
-
-
-
+        
+        
+        
+        
+        
         // object destructuring
         
+        let product = {
+            brand: "apple",
+            model: "Iphone 14",
+            price: 2000,
+            status: true
+        }
+        
+        
+        //                        when its not defined: it will send "status = false" 
+        //                        if its defined: it will send whatever its defined
+        //                        its literaly defines a default value
+        //                        vvvvvvvvvvvvvv   
+        let {brand, model, price, status = false} = product;
+        
+        console.log(brand, model, price, status);
+        
+        
+        
+        
+        
+        
+        
+        //another example
+        
+        
+        let product2 = {
+            brand2: "apple",
+            model2: "Iphone 14",
+            // price2: 2000, // if you dont even define the price it will show like price was 0
+            status2: true
+        }
 
+        function productshow(obj) {        
+            //                   as you can se we defined the default value of this item as 0 it means if we dont define this item before it will be a 0
+            //                   vvvvvvvvvv
+            let {brand2, model2, price2 = 0, status2 = false} = obj;
+            console.log(brand2, model2, price2, status2);
+        }
         
+        productshow(product2);
         
-    </script>
+        </script>
     
 </body>
 </html>
