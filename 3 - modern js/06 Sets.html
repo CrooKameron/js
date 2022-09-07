@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // // you can add items like this
+        // const numbers = new Set([1,2,3]);
+
+
+        // or this
+        const numbers = new Set();
+
+        numbers.add(1);
+        numbers.add(2);
+        numbers.add(3);
+        numbers.add(3); // it will ignore if items in it are duplicated so you can add only unique items that is not inside the set
+        numbers.add("4"); 
+
+
+
+        // so its a exapmle that how you can convert a set to an array
+        const array = [...numbers];
+        console.log(array);
+
+
+
+        // so if you want to edit a set here is how to do it
+        numbers.delete(1); // you can only use the VALUE if you try to delete with value's key IT WONT WORK
+        console.log(numbers.has(2)); // this asks if sayilar has the VALUE of 2. it will return true or false
+        console.clear(); // literaly does what its named
+        
+        console.log(numbers.values()); //returns a SetIterator idk what that means just wanted to mention
+        
+        
+        
+        for(let x of numbers.values()){ 
+            console.log(x);            
+        }                               
+        
+        // those both doesnt have any difference
+        
+        for(let x of numbers){ 
+            console.log(x);            
+        }                    
+
+
+
+        console.log(numbers);
+
+
+    </script>
+</body>
+</html>
