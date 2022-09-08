@@ -8,7 +8,52 @@
 </head>
 <body>
     <script>
+        // function constructor
+        function personES5(name,job,birthdate) {
+            this.name = name;
+            this.job = job;
+            this.birthdate = birthdate;
+        }
+        personES5.prototype.agecalc = function () {
+            let date = new Date().getFullYear();
+            return date - this.birthdate;
+        }
+
+        let emre = new personES5("Emre yagci","ogrenci",1990);
+        let ahmet = new personES5("ahmet yilmaz","ogretmen",1962);
+
+
+        console.log(emre);
+        console.log(ahmet);
         
+        console.log("age: ",emre.agecalc());
+        console.log("age: ",ahmet.agecalc());
+
+
+ 
+        // class
+        class personES6 { 
+            constructor(name, job, birthdate) {
+                this.name = name;
+                this.job = job;
+                this.birthdate = birthdate;
+                console.log("object generated")
+            }
+
+            agecalc(){
+                let date = new Date().getFullYear();
+                return date - this.birthdate;   
+            }
+        }
+
+        let person1 = new personES6("cinar turan","ogrenci",2017);
+        let person2 = new personES6("ada bilgi","ogrenci",2012);
+
+        console.log(person1);
+        console.log(person2);
+        
+        console.log("age: ",person1.agecalc());
+        console.log("age: ",person2.agecalc());
     </script>
 </body>
 </html>
