@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        // parent
+        class person{
+            constructor(name,birthdate){
+                console.log("person constructor");
+                this.name = name
+                this.birthdate =  birthdate
+            }
+
+            agecalc() {
+                let date = new Date().getFullYear()
+                return date - this.birthdate
+            }
+
+            introduceYourself(){
+                return `my name is ${this.name}`
+            }
+        }
+
+        // child 
+        class student extends person {
+            constructor(name,birthdate,schoolnumber){
+                console.log("student constructor")
+                super(name,birthdate)
+                this.schoolnumber = schoolnumber
+            }
+            
+            study() {
+                console.log(`${this.name} is studying.`)
+            }
+
+            introduceYourself(){
+                return `my name is ${this.name} and my school number is ${this.schoolnumber}`
+            }
+        }
+
+        let person1 = new person("ali",1990)
+        let student1 = new student("ahmet",2000,123)
+
+        // console.log(person1.agecalc())
+        // console.log(student1.agecalc())
+        // console.log(student1.study())
+
+
+        console.log(person1.introduceYourself())
+        console.log(student1.introduceYourself())
+
+    </script>
+</body>
+</html>
