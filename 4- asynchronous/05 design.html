@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,14 +13,15 @@
     </style>
     <title>Document</title>
 </head>
+
 <body>
-    
+
     <div class="container my-5">
         <div class="card mb-3">
             <div class="card-body">
                 <div class="input-group">
                     <input id="txtSearch" type="text" class="form-control">
-                    <button id="btnSearch" type="button" class="btn btn-primary">Yükle</button>
+                    <button id="btnSearch" type="button" class="btn btn-primary">Search</button>
                 </div>
             </div>
         </div>
@@ -52,7 +54,7 @@
             </div> -->
         </div>
         <div class="card mb-3">
-            <div class="card-header">Komşu Ülkeler</div>
+            <div class="card-header">Neighbor countries</div>
             <div class="card-body">
                 <div class="row" id="neighbors">
 
@@ -61,43 +63,51 @@
         </div>
     </div>
 
-   <script>
+    <script>
 
-    document.querySelector("#btnSearch").addEventListener("click", () => {
-        let text = document.querySelector("#txtSearch").value;
-        getCountry(text);
-    });
-
-    function getCountry(country) {
-        const request = new XMLHttpRequest();
-
-        request.open('GET', 'https://restcountries.com/v3.1/name/' + country);
-        request.send();
-
-        request.addEventListener('load', function() {
-            const data = JSON.parse(this.responseText);
-            console.log(data);            
-            renderCountry(data[0]);
-
-            const countries = data[0].borders.toString();
-
-            // load neighbors
-            const req = new XMLHttpRequest();
-            req.open('GET', 'https://restcountries.com/v3.1/alpha?codes=' + countries);
-            req.send();
-
-            req.addEventListener('load', function() {
-                const data = JSON.parse(this.responseText);
-                renderNeighbors(data);
-            });
+        document.querySelector("#btnSearch").addEventListener("click", () => {
+            let text = document.querySelector("#txtSearch").value;
+            getCountry(text);
         });
-    }
+        window.addEventListener('keydown', (event) => {
+            if (event.key == "Enter") {
+                if (event.key == "Enter") {
+                    let text = document.querySelector("#txtSearch").value;
+                    getCountry(text);
+                }
+            }
+        })
 
-    function renderCountry(data) {        
-       
-        let html = `        
+        function getCountry(country) {    
+            const request = new XMLHttpRequest();
+
+            request.open('GET', 'https://restcountries.com/v3.1/name/' + country);
+            request.send();
+
+            request.addEventListener('load', function () {
+                const data = JSON.parse(this.responseText);
+                console.log(data);
+                renderCountry(data[0]);
+
+                const countries = data[0].borders.toString();
+
+                // load neighbors
+                const req = new XMLHttpRequest();
+                req.open('GET', 'https://restcountries.com/v3.1/alpha?codes=' + countries);
+                req.send();
+
+                req.addEventListener('load', function () {
+                    const data = JSON.parse(this.responseText);
+                    renderNeighbors(data);
+                });
+            });
+        }
+
+        function renderCountry(data) {
+
+            let html = `        
             <div class="card-header">
-                    Arama Sonucu
+                    Search results:
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -108,35 +118,35 @@
                             <h3 class="card-title">${data.name.common}</h3>
                             <hr>
                             <div class="row">
-                                <div class="col-4">Nufüs: </div>
+                                <div class="col-4">Population: </div>
                                 <div class="col-8">${(data.population / 1000000).toFixed(1)} milyon</div>
                             </div>
                             <div class="row">
-                                <div class="col-4">Resmi Dil: </div>
+                                <div class="col-4">Language: </div>
                                 <div class="col-8">${Object.values(data.languages)}</div>
                             </div>
                             <div class="row">
-                                <div class="col-4">Başkent: </div>
+                                <div class="col-4">Capital: </div>
                                 <div class="col-8">${data.capital[0]}</div>
                             </div>
                             <div class="row">
-                                <div class="col-4">Para Birimi: </div>
+                                <div class="col-4">Money Unit: </div>
                                 <div class="col-8">${Object.values(data.currencies)[0].name} (${Object.values(data.currencies)[0].symbol})</div>
                             </div>
                         </div>
                     </div>
                 </div>
-        `;            
+        `;
 
 
-        document.querySelector("#country-details").innerHTML = html;       
-    }
-     
-    function renderNeighbors(data) {
-        console.log(data);
-        let html = "";
-        for(let country of data) {
-            html += `
+            document.querySelector("#country-details").innerHTML = html;
+        }
+
+        function renderNeighbors(data) {
+            console.log(data);
+            let html = "";
+            for (let country of data) {
+                html += `
                 <div class="col-2 mt-2">
                     <div class="card">
                         <img src="${country.flags.png}" class="card-img-top">
@@ -146,11 +156,12 @@
                     </div>
                 </div>
             `;
-            
+
+            }
+            document.querySelector("#neighbors").innerHTML = html;
         }
-        document.querySelector("#neighbors").innerHTML =  html;
-    }
-   </script>
-    
+    </script>
+
 </body>
+
 </html>
