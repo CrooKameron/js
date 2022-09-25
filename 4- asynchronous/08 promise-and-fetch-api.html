@@ -26,32 +26,7 @@
             </div>
         </div>
         <div class="card mb-3" id="country-details">
-            <!-- <div class="card-header">
-                Arama Sonucu
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-4">
-                        <img src="tr.png" alt="" class="img-fluid">
-                    </div>
-                    <div class="col-8">
-                        <h3 class="card-title">Türkiye</h3>
-                        <hr>
-                        <div class="row">
-                            <div class="col-4">Nufüs: </div>
-                            <div class="col-8">84.5 milyon</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4">Resmi Dil: </div>
-                            <div class="col-8">Türkçe</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-4">Başkent: </div>
-                            <div class="col-8">Ankara</div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
+ 
         </div>
         <div class="card mb-3">
             <div class="card-header">Neighbor countries</div>
@@ -78,29 +53,41 @@
             }
         })
 
-        function getCountry(country) {    
-            const request = new XMLHttpRequest();
+        function getCountry(country) {   
+            fetch('https://restcountries.com/v3.1/name/' + country)
+                .then((response) => response.json())
+                .then((data)=> {
+                    renderCountry(data[0]);
+                    const countries = data[0].borders.toString();
 
-            request.open('GET', 'https://restcountries.com/v3.1/name/' + country);
-            request.send();
+                    return fetch('https://restcountries.com/v3.1/alpha?codes=' + countries); 
 
-            request.addEventListener('load', function () {
-                const data = JSON.parse(this.responseText);
-                console.log(data);
-                renderCountry(data[0]);
+                })
+                .then(response => response.json())
+                .then((data) => renderNeighbors(data))
 
-                const countries = data[0].borders.toString();
+            // const request = new XMLHttpRequest();
 
-                // load neighbors
-                const req = new XMLHttpRequest();
-                req.open('GET', 'https://restcountries.com/v3.1/alpha?codes=' + countries);
-                req.send();
+            // request.open('GET', 'https://restcountries.com/v3.1/name/' + country);
+            // request.send();
 
-                req.addEventListener('load', function () {
-                    const data = JSON.parse(this.responseText);
-                    renderNeighbors(data);
-                });
-            });
+            // request.addEventListener('load', function () {
+            //     const data = JSON.parse(this.responseText);
+            //     console.log(data);
+            //     renderCountry(data[0]);
+
+            //     const countries = data[0].borders.toString();
+
+            //     // load neighbors
+            //     const req = new XMLHttpRequest();
+            //     req.open('GET', 'https://restcountries.com/v3.1/alpha?codes=' + countries);
+            //     req.send();
+
+            //     req.addEventListener('load', function () {
+            //         const data = JSON.parse(this.responseText);
+            //         renderNeighbors(data);
+            //     });
+            // });
         }
 
         function renderCountry(data) {
@@ -160,6 +147,7 @@
             }
             document.querySelector("#neighbors").innerHTML = html;
         }
+
     </script>
 
 </body>
