@@ -76,49 +76,7 @@
                 renderError(err)
             }
 
-            // fetch('https://restcountries.com/v3.1/name/' + country)
-            //     .then((response) => {
-            //         if (!response.ok) 
-            //             throw new Error("country couldnt found")
-
-            //         return response.json()
-        
-            //     })
-            //     .then((data)=> {
-            //         renderCountry(data[0]);
-            //         const countries = data[0].borders;
-
-            //         if (!countries) throw new Error("there is no countries nearby")
-
-            //         return fetch('https://restcountries.com/v3.1/alpha?codes=' + countries.toString()); 
-
-            //     })
-            //     .then(response => response.json())
-            //     .then((data) => renderNeighbors(data))
-            //     .catch(err =>  renderError(err))
-
-            // const request = new XMLHttpRequest();
-
-            // request.open('GET', 'https://restcountries.com/v3.1/name/' + country);
-            // request.send();
-
-            // request.addEventListener('load', function () {
-            //     const data = JSON.parse(this.responseText);
-            //     console.log(data);
-            //     renderCountry(data[0]);
-
-            //     const countries = data[0].borders.toString();
-
-            //     // load neighbors
-            //     const req = new XMLHttpRequest();
-            //     req.open('GET', 'https://restcountries.com/v3.1/alpha?codes=' + countries);
-            //     req.send();
-
-            //     req.addEventListener('load', function () {
-            //         const data = JSON.parse(this.responseText);
-            //         renderNeighbors(data);
-            //     });
-            // });
+            
         }
 
         function renderCountry(data) {
