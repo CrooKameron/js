@@ -11,6 +11,10 @@
         .col-2 img {
             height: 120px;
         }
+
+        #loading {
+            display: none;
+        }
     </style>
     <title>Document</title>
 </head>
@@ -31,27 +35,32 @@
             </div>
         </div>
         <div class="card mb-3" id="country-details">
- 
         </div>
-        <div class="card mb-3">
-            <div class="card-header">Neighbor countries</div>
-            <div class="card-body">
-                <div class="row" id="neighbors">
 
-                </div>
-            </div>
+
+
+        <div id="loading" class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
         </div>
+
+        <div class=" mb-3" id="neighbooors">
+        </div>
+        
     </div>
 
     <script>
 
         document.querySelector("#btnSearch").addEventListener("click", () => {
+            document.querySelector("#loading").style.display = "block"
             let text = document.querySelector("#txtSearch").value;
             getCountry(text);
+
+
         });
         window.addEventListener('keydown', (event) => {
             if (event.key == "Enter") {
                 if (event.key == "Enter") {
+                    document.querySelector("#loading").style.display = "block"
                     let text = document.querySelector("#txtSearch").value;
                     getCountry(text);
                 }
@@ -59,7 +68,8 @@
         })
 
         document.querySelector("#btnLocation").addEventListener("click", () => {
-            if(navigator.geolocation) {
+            if (navigator.geolocation) {
+                document.querySelector("#loading").style.display = "block"
                 navigator.geolocation.getCurrentPosition(onSuccess, onError)
             }
         })
@@ -68,34 +78,59 @@
             console.log(err)
         }
 
-        function onSuccess(position) {
-            console.log(position)
+        async function onSuccess(position) {
+            let lat = position.coords.latitude
+            let lng = position.coords.longitude
+
+            //api, google, opencagedata
+
+            const apiKey = "e117f6abdc1c41e9bae08582b9c0b345"
+            const url = `https://api.opencagedata.com/geocode/v1/json?q=${lat}+${lng}&key=${apiKey}`
+
+            const response = await fetch(url)
+            const data = await response.json()
+
+
+            const country = data.results[0].components.country
+
+            // console.log(country)
+
+            document.querySelector("#txtSearch").value = country
+            document.querySelector("#btnSearch").click()
+
         }
 
-        async function getCountry(country) { 
-            
-            try{
+        async function getCountry(country) {
+
+            try {
 
                 const response = await fetch('https://restcountries.com/v3.1/name/' + country)
-                
+
                 if (!response.ok) throw new Error("country couldnt found")
-                
+
 
                 const data = await response.json()
                 renderCountry(data[0])
-                
+                document.querySelector("#neighbooors").innerHTML = ""
                 const countries = data[0].borders
                 if (!countries) throw new Error("there is no countries nearby")
 
+                
+
                 const response2 = await fetch('https://restcountries.com/v3.1/alpha?codes=' + countries.toString())
-                const neighbors = await response2.json()   
+                const neighbors = await response2.json()
                 renderNeighbors(neighbors)
             } catch (err) {
                 renderError(err)
+                document.querySelector("#loading").style.display = "none"
             }
         }
 
         function renderCountry(data) {
+
+            document.querySelector("#loading").style.display = "none"
+
+
 
             let html = `        
             <div class="card-header">
@@ -136,7 +171,17 @@
 
         function renderNeighbors(data) {
             console.log(data);
-            let html = "";
+
+            document.querySelector("#neighbooors").innerHTML = `
+                <div class="card mb-3">
+                <div class="card-header">Neighbors</div>
+                <div class="card-body">
+                    <div class="row" id="neighbors">
+
+                    </div>
+                </div>
+            `
+            let html = ``
             for (let country of data) {
                 html += `
                 <div class="col-2 mt-2">
@@ -153,7 +198,7 @@
             document.querySelector("#neighbors").innerHTML = html;
         }
 
-        function renderError(err){
+        function renderError(err) {
             const html = `
                 <div class="alert alert-danger">
                     ${err.message}
